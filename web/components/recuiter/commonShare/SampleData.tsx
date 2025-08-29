@@ -17,12 +17,7 @@ const sampleIssuer: Issuer = {
   social: ["https://www.uit.edu.vn/"],
 };
 
-
-
 const participants = 10000;
-
-
-// Sample Issuer data already exists as sampleIssuer
 
 export const trendingSkills: Skill[] = [
   {
@@ -99,7 +94,7 @@ export const sampleStudents: Student[] = [
     points: 5740,
     rank: 1,
     joinDate: "2021-09-01",
-    NFTs: [sampleCertificate], 
+    NFTs: [sampleCertificate],
   },
 ].concat(
   Array.from({ length: 9 }, (_, i) => ({

@@ -13,9 +13,9 @@ import { Certificate, Student, FilterKey } from "@/components/recuiter/commonSha
 export default function ProfilePage() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [activeFilters, setActiveFilters] = useState({
-    type: new Set(['Degree']),
+    type: new Set(["Degree"]),
     education: new Set<string>(),
-    level: new Set<string>()
+    level: new Set<string>(),
   });
 
   const handleFilterChange = (
@@ -23,13 +23,11 @@ export default function ProfilePage() {
     value: string,
     checked: boolean
   ) => {
-    setActiveFilters(prev => {
-      const newFilters = { ...prev };
-      if (filterType === 'type') {
-        // For type, we only allow one selection
+    setActiveFilters((prev) => {
+      const newFilters = { ...prev } as typeof prev;
+      if (filterType === "type") {
         newFilters[filterType] = new Set([value]);
       } else {
-        // For other filters, we allow multiple selections
         const filterSet = new Set(prev[filterType]);
         if (checked) {
           filterSet.add(value);
@@ -44,32 +42,32 @@ export default function ProfilePage() {
 
   const handleClearAllFilters = () => {
     setActiveFilters({
-      type: new Set(['Degree']),
+      type: new Set(["Degree"]),
       education: new Set<string>(),
-      level: new Set<string>()
+      level: new Set<string>(),
     });
   };
 
-  // Filter certificates based on active filters
   const filteredCertificates = sampleCertificates.filter((cert: Certificate) => {
-    const typeMatch = activeFilters.type.size === 0 || activeFilters.type.has(cert.type);
+    const typeMatch =
+      activeFilters.type.size === 0 || activeFilters.type.has(cert.type);
     return typeMatch;
   });
 
   const studentWithFilteredCerts: Student = {
     ...sampleStudents[0],
-    NFTs: filteredCertificates
+    NFTs: filteredCertificates,
   };
 
   return (
     <>
       <NavBar />
       <div className="bg-gray-50 min-h-screen">
-        <ProfileHeader student={sampleStudents[0]}/>
-        <ProfileInformation student={sampleStudents[0]}/>
+        <ProfileHeader student={sampleStudents[0]} />
+        <ProfileInformation student={sampleStudents[0]} />
         <div className="flex gap-6 px-8 mt-6">
           {showSidebar && (
-            <NFTFilterSidebar 
+            <NFTFilterSidebar
               onFilterChange={handleFilterChange}
               onClearAll={handleClearAllFilters}
             />
@@ -84,3 +82,5 @@ export default function ProfilePage() {
     </>
   );
 }
+
+

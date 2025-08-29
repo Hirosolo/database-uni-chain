@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import NavBar from "../../../components/recuiter/commonShare/NavBar";
-import TopCandidates from "../../../components/recuiter/landingPage/TopCandidates";
+import TopCandidates from "@/components/recuiter/landingPage/TopCandidates";
 import TrendSkills from "../../../components/recuiter/landingPage/TrendSkills";
 import TopEducation from "@/components/recuiter/commonShare/TopEducation";
 import { Issuer, Certificate, Skill, SkillOfCertificate, studentPersonalInformation, Student, NFTFilters  } from "@/components/recuiter/commonShare/ProjectInterface";
