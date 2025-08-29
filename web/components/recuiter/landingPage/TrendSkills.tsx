@@ -1,28 +1,13 @@
 "use client";
 import React from "react";
 import SkillCard from "./SkillCard";
+import { Certificate } from "../commonShare/ProjectInterface";
 
-type skill = {
-  id: number;
-  name: string;
-  learners: number;
-  certificates: number;
-};
+interface TrendSkillsProps {
+  certificates: Certificate[];
+}
 
-const skills: skill[] = [
-  {
-    id: 1,
-    name: "Blockchain Development",
-    learners: 10000,
-    certificates: 1000,
-  },
-  { id: 2, name: "Data Analysis", learners: 10000, certificates: 1000 },
-  { id: 3, name: "English", learners: 10000, certificates: 1000 },
-  { id: 4, name: "AI Fundamentals", learners: 10000, certificates: 1000 },
-  { id: 5, name: "System design", learners: 10000, certificates: 1000 },
-];
-
-const TrendSkills = () => (
+const TrendSkills = ({ certificates }: TrendSkillsProps) => (
   <section className="bg-white p-6 pb-0 rounded shadow mt-6">
     <div className="flex items-center justify-between mb-4">
       <h2 className="text-lg font-semibold mb-4" style={{ color: "#707A83" }}>
@@ -73,9 +58,13 @@ const TrendSkills = () => (
         </button>
       </nav>
     </div>
-    <div className="grid grid-cols-[repeat(5,minmax(150px,1fr))] gap-4 pb-4 overflow-x-hidden">
-      {skills.map((c) => (
-        <SkillCard key={c.id} skill={c} />
+    <div className="grid grid-cols-[repeat(4,minmax(150px,1fr))] gap-4 pb-4 overflow-x-hidden">
+      {certificates.map((cert, index) => (
+        <SkillCard 
+          key={cert.certificateAddress} 
+          cert={cert}
+          rank={index + 1}
+        />
       ))}
     </div>
   </section>

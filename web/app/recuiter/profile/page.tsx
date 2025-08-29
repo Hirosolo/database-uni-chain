@@ -1,57 +1,82 @@
 "use client";
 import React, { useState } from "react";
-import ProfileHeader from "../../../components/recuiter/profile/ProfileHeader";
-import NFTFilterSidebar from "../../../components/recuiter/profile/NFTFilterSidebar";
-import NFTCardGrid from "../../../components/recuiter/profile/NFTCardGrid";
-import Pagination from "../../../components/recuiter/commonShare/Pagination";
-import NavBar from "../../../components/recuiter/commonShare/NavBar";
+import ProfileHeader from "@/components/recuiter/profile/ProfileHeader";
+import NFTFilterSidebar from "@/components/recuiter/commonShare/NFTFilterSidebar";
+import NFTCardGrid from "@/components/recuiter/commonShare/NFTCardGrid";
+import Pagination from "@/components/recuiter/commonShare/Pagination";
+import NavBar from "@/components/recuiter/commonShare/NavBar";
 import CardToolbar from "@/components/recuiter/commonShare/CardToolbar";
 import ProfileInformation from "@/components/recuiter/profile/ProfileInformation";
-import { candidate } from "@/components/recuiter/commonShare/allTypes";
+import { sampleCertificates, sampleStudents } from "@/components/recuiter/commonShare/SampleData";
+import { Certificate, Student, FilterKey } from "@/components/recuiter/commonShare/ProjectInterface";
 
 export default function ProfilePage() {
   const [showSidebar, setShowSidebar] = useState(true);
-  const sampleNFTDetail = {
-    name: "UIT diploma",
-    ownerAddress: "0x283132390ea87....",
-    type: "Diploma",
-    status: "Valid",
-    issuer: "UIT",
-    issueDate: "01/01/2025",
-    expiredDate: "None",
-    contractAddress: "0x283132390ea87....",
-    description:
-      "The UIT Diploma in Blockchain Development certifies the holder has successfully completed a comprehensive program covering blockchain fundamentals, smart contract development, and decentralized application design. The program includes theoretical foundations, hands-on coding projects, and deployment on public blockchain networks. This diploma is issued by the University of Information Technology and cryptographically verified on the Ethereum blockchain.",
-    skills: [
-      "Smart Contract Development (Solidity, Hardhat, Truffle)",
-      "Decentralized Application (DApp) Architecture",
-      "Token Standards (ERC-20, ERC-721, ERC-1155)",
-      "Blockchain Security Principles",
-      "Frontend–Blockchain Integration (Web3.js, Ethers.js)",
-      "Version Control (Git, GitHub)",
-    ],
+  const [activeFilters, setActiveFilters] = useState({
+    type: new Set(['Degree']),
+    education: new Set<string>(),
+    level: new Set<string>()
+  });
+
+  const handleFilterChange = (
+    filterType: FilterKey,
+    value: string,
+    checked: boolean
+  ) => {
+    setActiveFilters(prev => {
+      const newFilters = { ...prev };
+      if (filterType === 'type') {
+        // For type, we only allow one selection
+        newFilters[filterType] = new Set([value]);
+      } else {
+        // For other filters, we allow multiple selections
+        const filterSet = new Set(prev[filterType]);
+        if (checked) {
+          filterSet.add(value);
+        } else {
+          filterSet.delete(value);
+        }
+        newFilters[filterType] = filterSet;
+      }
+      return newFilters;
+    });
   };
 
-  const sampleCandidate: candidate = {
-    rank: 1,
-    name: "Tong Thuan Nguyen",
-    role: "Sinh viên Hệ thống thông tin",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
+  const handleClearAllFilters = () => {
+    setActiveFilters({
+      type: new Set(['Degree']),
+      education: new Set<string>(),
+      level: new Set<string>()
+    });
+  };
+
+  // Filter certificates based on active filters
+  const filteredCertificates = sampleCertificates.filter((cert: Certificate) => {
+    const typeMatch = activeFilters.type.size === 0 || activeFilters.type.has(cert.type);
+    return typeMatch;
+  });
+
+  const studentWithFilteredCerts: Student = {
+    ...sampleStudents[0],
+    NFTs: filteredCertificates
   };
 
   return (
     <>
       <NavBar />
       <div className="bg-gray-50 min-h-screen">
-        <ProfileHeader candidate={sampleCandidate}/>
-        <ProfileInformation />
+        <ProfileHeader student={sampleStudents[0]}/>
+        <ProfileInformation student={sampleStudents[0]}/>
         <div className="flex gap-6 px-8 mt-6">
-          {/* Sidebar toggle logic */}
-          {showSidebar && <NFTFilterSidebar />}
+          {showSidebar && (
+            <NFTFilterSidebar 
+              onFilterChange={handleFilterChange}
+              onClearAll={handleClearAllFilters}
+            />
+          )}
           <div className="flex-1">
             <CardToolbar onToggleSidebar={() => setShowSidebar((v) => !v)} />
-            <NFTCardGrid candidate={sampleCandidate} />
+            <NFTCardGrid student={studentWithFilteredCerts} />
             <Pagination />
           </div>
         </div>

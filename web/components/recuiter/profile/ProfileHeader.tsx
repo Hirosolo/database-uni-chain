@@ -3,38 +3,29 @@ import { FaFacebook, FaDiscord, FaLinkedin, FaGithub } from "react-icons/fa";
 import { AiOutlineStar, AiOutlineShareAlt } from "react-icons/ai";
 import { BiComment } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
-import { candidate } from "../commonShare/allTypes";
+import { Student } from "../commonShare/ProjectInterface";
 
-const socialIcons = [
-  { icon: "fa fa-globe", url: "#" },
-  { icon: "fa fa-github", url: "#" },
-  { icon: "fa fa-linkedin", url: "#" },
-  { icon: "fa fa-envelope", url: "#" },
-];
-
-const ProfileHeader = ({ candidate }: { candidate: candidate }) => (
+const ProfileHeader = ({ student }: { student: Student }) => (
   <section className="relative w-full mb-8">
     {/* Cover Image */}
     <div
       className="h-56 w-full bg-cover bg-center rounded-b-lg"
-      style={{ backgroundImage: "url(/profile-cover.png)" }}
+      style={{ backgroundImage: `url(${student.personalInformation.coverImage})` }}
     />
     {/* Avatar, Name, Subtitle, Bio, Social Icons */}
     <div className="flex items-end justify-between px-8 -mt-16 relative">
       <div className="flex flex-col items-start gap-6">
         {/* Overlapping Avatar */}
         <img
-          src="/avatar-user.png"
+          src={student.personalInformation.avatar}
           alt="Avatar"
           className="h-32 w-32 rounded-lg border-4 border-white bg-white shadow-lg"
         />
         <div className="pb-4 py-8" style={{ color: "black" }}>
-          <h1 className="text-2xl font-bold mb-2">{candidate.name}</h1>
-          <div className="text-gray-600 mb-1">{candidate.role}</div>
+          <h1 className="text-2xl font-bold mb-2">{student.personalInformation.name}</h1>
+          <div className="text-gray-600 mb-1">{student.position}</div>
           <div className="text-sm text-gray-500 max-w-xl">
-            Bạn mê về blockchain và phát triển smart contract. Đã hoàn thành
-            nhiều chứng chỉ về Solidity, Web3 và DeFi. Đang tìm kiếm cơ hội để
-            áp dụng kỹ năng kỹ thuật vào các dự án thực tế.
+            {student.personalInformation.bio}
           </div>
         </div>
       </div>

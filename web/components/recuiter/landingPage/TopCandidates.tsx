@@ -1,111 +1,11 @@
 "use client";
 import React from "react";
-import { candidate } from "../commonShare/allTypes";
+import { Issuer } from "../commonShare/ProjectInterface";
 import CandidateCard from "../landingPage/CandidateCard";
+import { sampleStudents } from "../commonShare/SampleData";
 import { array } from "zod";
-import { NFTDetail } from "../commonShare/allTypes";
 
-// Candidate item component for reuse
-const sampleNFTDetail: NFTDetail = {
-  name: "UIT diploma",
-  ownerAddress: "0x283132390ea87....",
-  type: "Diploma",
-  status: "Valid",
-  issuer: "UIT",
-  issueDate: "01/01/2025",
-  expiredDate: "None",
-  contractAddress: "0x283132390ea87....",
-  description:
-    "The UIT Diploma in Blockchain Development certifies the holder has successfully completed a comprehensive program covering blockchain fundamentals, smart contract development, and decentralized application design. The program includes theoretical foundations, hands-on coding projects, and deployment on public blockchain networks. This diploma is issued by the University of Information Technology and cryptographically verified on the Ethereum blockchain.",
-  skills: [
-    "Smart Contract Development (Solidity, Hardhat, Truffle)",
-    "Decentralized Application (DApp) Architecture",
-    "Token Standards (ERC-20, ERC-721, ERC-1155)",
-    "Blockchain Security Principles",
-    "Frontend–Blockchain Integration (Web3.js, Ethers.js)",
-    "Version Control (Git, GitHub)",
-  ],
-};
-
-const candidates: candidate[] = [
-  {
-    rank: 1,
-    name: "Tong Thuan Nguyen",
-    role: "Sinh viên Hệ thống thông tin",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 2,
-    name: "Gitcoin Presents",
-    role: "Business Analyst",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 3,
-    name: "Gitcoin Presents",
-    role: "Web3 Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 4,
-    name: "Gitcoin Presents",
-    role: "Backend Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 5,
-    name: "Gitcoin Presents",
-    role: "Frontend Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 6,
-    name: "Gitcoin Presents",
-    role: "UI/UX Designer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 7,
-    name: "Gitcoin Presents",
-    role: "Fullstack Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 8,
-    name: "Gitcoin Presents",
-    role: "Project Manager",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 9,
-    name: "Gitcoin Presents",
-    role: "Intern",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 10,
-    name: "Gitcoin Presents",
-    role: "Intern",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-];
-
-type school = {
-  name: string;
-  logoUrl: string;
-};
-
-const TopCandidates = ({ school }: { school: school }) => (
+const TopCandidates = ({ issuer }: { issuer: Issuer }) => (
   <section className="bg-white p-6 rounded shadow mt-6">
     <div className="flex items-center justify-between mb-4">
       <h2 className="text-lg font-semibold" style={{ color: "#707A83" }}>
@@ -127,7 +27,11 @@ const TopCandidates = ({ school }: { school: school }) => (
               key={`logo-btn-${i}`}
               className="ml-2 py-1 rounded flex items-center justify-center"
             >
-              <img src={school.logoUrl} alt={school.name} className="h-5 w-6" />
+              <img
+                src="/logo-UIT.svg"
+                alt={issuer.issuerName}
+                className="h-5 w-6"
+              />
             </button>
           ))}
         </div>
@@ -149,8 +53,12 @@ const TopCandidates = ({ school }: { school: school }) => (
             <span className="ml-auto">Điểm danh tiếng</span>
           </div>
 
-          {candidates.slice(startIdx, startIdx + 5).map((c) => (
-            <CandidateCard key={c.rank} candidate={c} />
+          {Array.from({ length: 5 }).map((c, index) => (
+            <CandidateCard
+              key={sampleStudents[0].studentAddress}
+              student={sampleStudents[0]}
+              rank={startIdx + index + 1}
+            />
           ))}
         </div>
       ))}
