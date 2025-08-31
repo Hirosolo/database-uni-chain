@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
 import SkillCard from "./SkillCard";
+import data from "@/data/fetchedData.json";
+
+const { certificates } = data;
 
 const education = {
   name: "ĐẠI HỌC CÔNG NGHỆ THÔNG TIN – ĐHQG TP. HỒ CHÍ MINH",
@@ -9,11 +12,6 @@ const education = {
   certificates: 10000,
   students: 10000,
   website: "https://www.uit.edu.vn/",
-  skills: [
-    { name: "Blockchain Development", type: "Bằng cấp", participants: 1000 },
-    { name: "Data Analysis", type: "Chứng chỉ", participants: 1000 },
-    { name: "Data Analysis", type: "Chứng chỉ", participants: 1000 },
-  ],
 };
 
 const TopEducation = () => (
@@ -35,8 +33,41 @@ const TopEducation = () => (
           <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-2 rounded self-end cursor-pointer" onClick={() => window.location.href = "/recuiter/school"} style={{ color: '#FFFF' }}>Tìm hiểu thêm</button>
         </div>
         <div className="flex gap-4 mt-4">
-          {education.skills.map((skill, idx) => (
-            <SkillCard key={idx} />
+          {certificates.map((certificate, idx) => (
+            <SkillCard 
+              key={idx} 
+              certificate={{
+                basic: {
+                  contractAddress: certificate.basic.contractAddress,
+                  tokenId: certificate.basic.tokenId,
+                  name: certificate.basic.name,
+                  symbol: certificate.basic.symbol,
+                  holder: certificate.basic.holder
+                },
+                details: {
+                  level: certificate.details.level,
+                  points: certificate.details.points,
+                  issueDate: certificate.details.issueDate,
+                  expireDate: certificate.details.expireDate,
+                  mintDate: certificate.details.mintDate,
+                  isExpired: certificate.details.isExpired
+                },
+                issuer: {
+                  address: certificate.issuer.address,
+                  name: certificate.issuer.name,
+                  description: certificate.issuer.description,
+                  location: certificate.issuer.location,
+                  website: certificate.issuer.website
+                },
+                metadata: {
+                  tokenURI: certificate.metadata.tokenURI
+                },
+                blockchain: {
+                  hubAddress: certificate.blockchain.hubAddress,
+                  studentReputation: certificate.blockchain.studentReputation
+                }
+              }}
+            />
           ))}
         </div>
         </div>

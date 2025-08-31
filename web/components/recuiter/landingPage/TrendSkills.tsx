@@ -8,7 +8,7 @@ const { certificates } = data;
 
 const skills: skill[] = certificates.map((certificate, idx) => ({
   rank: idx + 1,
-  name: certificate.metadata.skills ?? "Unknown Skill",
+  name: certificate.basic.name,
   role: "Skill",
   candidates: 1, // This would need to be calculated if we had candidate data
   certificates: 1, // This is per certificate, so 1
