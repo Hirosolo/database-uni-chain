@@ -2,103 +2,31 @@
 import React from "react";
 import { candidate } from "../commonShare/allTypes";
 import CandidateCard from "../landingPage/CandidateCard";
-import { array } from "zod";
 import { NFTDetail } from "../commonShare/allTypes";
+import data from "@/data/fetchedData.json";
 
-// Candidate item component for reuse
-const sampleNFTDetail: NFTDetail = {
-  name: "UIT diploma",
-  ownerAddress: "0x283132390ea87....",
-  type: "Diploma",
-  status: "Valid",
-  issuer: "UIT",
-  issueDate: "01/01/2025",
-  expiredDate: "None",
-  contractAddress: "0x283132390ea87....",
-  description:
-    "The UIT Diploma in Blockchain Development certifies the holder has successfully completed a comprehensive program covering blockchain fundamentals, smart contract development, and decentralized application design. The program includes theoretical foundations, hands-on coding projects, and deployment on public blockchain networks. This diploma is issued by the University of Information Technology and cryptographically verified on the Ethereum blockchain.",
-  skills: [
-    "Smart Contract Development (Solidity, Hardhat, Truffle)",
-    "Decentralized Application (DApp) Architecture",
-    "Token Standards (ERC-20, ERC-721, ERC-1155)",
-    "Blockchain Security Principles",
-    "Frontend–Blockchain Integration (Web3.js, Ethers.js)",
-    "Version Control (Git, GitHub)",
+const { certificates } = data;
+
+const candidates: candidate[] = certificates.map((certificate, idx) => ({
+  rank: idx + 1,
+  name: "Nguyen Phat Tai",
+  role: "Student", // This can be customized based on your data
+  score: certificate.details.points,
+  NFT: [
+    {
+      name: certificate.basic.name,
+      ownerAddress: "Nguyen Phat Tai",
+      type: "Certificate",
+      status: certificate.details.isExpired ? "Expired" : "Valid",
+      issuer: certificate.issuer.name ?? 'Unknown',
+      issueDate: new Date(certificate.details.issueDate).toLocaleDateString(),
+      expiredDate: new Date(certificate.details.expireDate).toLocaleDateString(),
+      contractAddress: certificate.basic.contractAddress,
+      description: 'No description',
+      skills: [],
+    },
   ],
-};
-
-const candidates: candidate[] = [
-  {
-    rank: 1,
-    name: "Tong Thuan Nguyen",
-    role: "Sinh viên Hệ thống thông tin",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 2,
-    name: "Gitcoin Presents",
-    role: "Business Analyst",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 3,
-    name: "Gitcoin Presents",
-    role: "Web3 Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 4,
-    name: "Gitcoin Presents",
-    role: "Backend Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 5,
-    name: "Gitcoin Presents",
-    role: "Frontend Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 6,
-    name: "Gitcoin Presents",
-    role: "UI/UX Designer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 7,
-    name: "Gitcoin Presents",
-    role: "Fullstack Developer",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 8,
-    name: "Gitcoin Presents",
-    role: "Project Manager",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 9,
-    name: "Gitcoin Presents",
-    role: "Intern",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-  {
-    rank: 10,
-    name: "Gitcoin Presents",
-    role: "Intern",
-    score: 5740,
-    NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-  },
-];
+}));
 
 type school = {
   name: string;

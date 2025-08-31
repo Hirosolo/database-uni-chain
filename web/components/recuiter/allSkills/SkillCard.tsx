@@ -14,8 +14,8 @@ const SkillCard = ({ skill }: { skill: skill }) => (
       <div className="font-semibold" style={{color:'#04111D'}}>{skill.name}</div>
       <div className="text-xs" color="#707A83">{skill.role}</div>
     </div>
-    <div className="ml-106 font-bold" style={{color: "#04111D"}}>{skill.candidates.toLocaleString()}</div>
-    <div className="ml-auto font-bold" style={{color: "#04111D"}}>{skill.certificates.toLocaleString()}</div>
+    <div className="ml-106 font-bold" style={{color: "#04111D"}}>{skill.learner.toLocaleString()}</div>
+    <div className="ml-auto font-bold" style={{color: "#04111D"}}>{skill.relatedCert.toLocaleString()}</div>
   </div>
 );
 

@@ -5,44 +5,34 @@ import SchoolTopStudents from "@/components/recuiter/school/SchoolTopStudents";
 import Pagination from "@/components/recuiter/commonShare/Pagination";
 import NavBar from "@/components/recuiter/commonShare/NavBar";
 import { school, student, skill } from "@/components/recuiter/school/SchoolType";
+import data from "@/data/fetchedData.json";
 
+const { certificates } = data;
+
+const sampleSkill: skill = {
+  name: certificates[0].basic.name,
+  type: "Certificate",
+  level: certificates[0].details.level.toString(),
+  participants: certificates[0].blockchain.studentReputation,
+};
+
+const sampleSchool: school = {
+  name: certificates[0].issuer.name ?? "Unknown Issuer",
+  logoUrl: "/logo-UIT.svg",
+  address: certificates[0].issuer.location ?? "Unknown Location",
+  NFT: Array.from({ length: 8 }).map(() => sampleSkill),
+  participants: 5000, // This would need to be calculated
+  description: certificates[0].issuer.description ?? "No description",
+  skills: 101, // This would need to be calculated
+};
+
+const sampleStudents: student[] = certificates.map((certificate) => ({
+  name: "Nguyen Phat Tai",
+  role: "Student",
+  certificates: 1, // This is per certificate, so 1
+}));
 
 export default function SchoolPage() {
-  const sampleSkill: skill = {
-    name: "Blockchain Development",
-    type: "Bằng cấp",
-    level: "Dễ",
-    participants: 1000,
-  };
-
-  const sampleSchool: school = {
-    name: "ĐẠI HỌC CÔNG NGHỆ THÔNG TIN – ĐHQG TP. HỒ CHÍ MINH",
-    logoUrl: "/logo-UIT.svg",
-    address: "Viet Nam",
-    NFT: Array.from({ length: 8 }).map(() => sampleSkill),
-    participants: 5000,
-    description:
-      "UIT là một trong những trường top đầu về CNTT tại Việt Nam, hơn 10.000 chứng chỉ đã được phát hành và xác thực trên hệ thống",
-    skills: 101,
-  };
-
-  const sampleStudents: student[] = [
-  {
-    name: "Tong Thuan Nguyen",
-    role: "Sinh viên Hệ thống thông tin",
-    certificates: 5740,
-  },
-  { name: "Gitcoin Presents", role: "Business Analyst", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Web3 Developer", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Backend Developer", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Frontend Developer", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "UI/UX Designer", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Fullstack Developer", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Project Manager", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Director", certificates: 5740 },
-  { name: "Gitcoin Presents", role: "Intern", certificates: 5740 },
-];
-
   return (
     <div>
       <NavBar />

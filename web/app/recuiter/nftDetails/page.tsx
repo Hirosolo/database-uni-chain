@@ -3,28 +3,25 @@ import NFTDetailsCard from "@/components/recuiter/nftDetails/NFTDetailsCard";
 import NFTDetailsTabs from "@/components/recuiter/nftDetails/NFTDetailsTabs";
 import NFTDetailsRelatedGrid from "@/components/recuiter/nftDetails/NFTDetailsRelatedGrid";
 import NavBar from "@/components/recuiter/commonShare/NavBar";
+import data from "@/data/fetchedData.json";
+import { NFTDetail } from "@/components/recuiter/commonShare/allTypes";
+
+const { certificates } = data;
+
+const sampleNFTDetail: NFTDetail = {
+  name: certificates[0].basic.name,
+  ownerAddress: "Nguyen Phat Tai",
+  type: "Certificate",
+  status: certificates[0].details.isExpired ? "Expired" : "Valid",
+  issuer: certificates[0].issuer.name ?? 'Unknown',
+  issueDate: new Date(certificates[0].details.issueDate).toLocaleDateString(),
+  expiredDate: new Date(certificates[0].details.expireDate).toLocaleDateString(),
+  contractAddress: certificates[0].basic.contractAddress,
+  description: 'No description',
+  skills: [],
+};
 
 export default function NFTDetailsPage() {
-  const sampleNFTDetail = {
-    name: "UIT diploma",
-    ownerAddress: "0x283132390ea87....",
-    type: "Diploma",
-    status: "Valid",
-    issuer: "UIT",
-    issueDate: "01/01/2025",
-    expiredDate: "None",
-    contractAddress: "0x283132390ea87....",
-    description:
-      "The UIT Diploma in Blockchain Development certifies the holder has successfully completed a comprehensive program covering blockchain fundamentals, smart contract development, and decentralized application design. The program includes theoretical foundations, hands-on coding projects, and deployment on public blockchain networks. This diploma is issued by the University of Information Technology and cryptographically verified on the Ethereum blockchain.",
-    skills: [
-      "Smart Contract Development (Solidity, Hardhat, Truffle)",
-      "Decentralized Application (DApp) Architecture",
-      "Token Standards (ERC-20, ERC-721, ERC-1155)",
-      "Blockchain Security Principles",
-      "Frontend–Blockchain Integration (Web3.js, Ethers.js)",
-      "Version Control (Git, GitHub)"
-    ],
-  };
   return (
     <div>
       <NavBar />

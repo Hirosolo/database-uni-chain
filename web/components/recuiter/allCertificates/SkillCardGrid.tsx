@@ -1,8 +1,13 @@
 import React from "react";
 import SkillCard from "../commonShare/SkillCard";
 import CardToolbar from "../commonShare/CardToolbar";
+import { Certificate } from "../commonShare/allTypes";
 
-export default function SkillCardGrid() {
+interface SkillCardGridProps {
+  certificates: Certificate[];
+}
+
+export default function SkillCardGrid({ certificates }: SkillCardGridProps) {
   return (
   <div className=""> 
     <nav className="flex items-center justify-between mb-2">
@@ -11,8 +16,8 @@ export default function SkillCardGrid() {
     </nav>
     <CardToolbar />
     <div className="grid grid-cols-4 gap-6 mb-6">
-      {Array.from({ length: 12 }).map((_, idx) => (
-        <SkillCard key={idx} />
+      {certificates.map((cert, idx) => (
+        <SkillCard key={idx} certificate={cert} />
       ))}
     </div>
   </div>

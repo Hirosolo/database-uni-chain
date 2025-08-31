@@ -9,34 +9,36 @@ import {
   student,
   skill,
 } from "@/components/recuiter/topStudent/TopStudentType";
+import data from "@/data/fetchedData.json";
+
+const { certificates } = data;
+
+const sampleSkill: skill = {
+  name: certificates[0].basic.name,
+  type: "Certificate",
+  level: certificates[0].details.level.toString(),
+  participants: certificates[0].blockchain.studentReputation,
+};
+
+const sampleStudent: student = {
+  name: "Nguyen Phat Tai",
+  role: "Student",
+  certificates: 1,
+  NFT: Array.from({ length: 8 }).map(() => sampleSkill),
+};
+
+const sampleSchool: school = {
+  name: certificates[0].issuer.name ?? "Unknown Issuer",
+  logoUrl: "/logo-UIT.svg",
+  address: certificates[0].issuer.location ?? "Unknown Location",
+  NFT: Array.from({ length: 8 }).map(() => sampleSkill),
+  participants: 5000, // This would need to be calculated
+  description: certificates[0].issuer.description ?? "No description",
+  skills: 101, // This would need to be calculated
+  students: Array.from({ length: 10 }).map(() => sampleStudent),
+};
 
 export default function topStudent() {
-  const sampleSkill: skill = {
-    name: "Blockchain Development",
-    type: "Bằng cấp",
-    level: "Dễ",
-    participants: 1000,
-  };
-
-  const sampleStudent: student = {
-    name: "Tong Thuan Nguyen",
-    role: "Sinh viên Hệ thống thông tin",
-    certificates: 5740,
-    NFT: Array.from({ length: 8 }).map(() => sampleSkill),
-  };
-
-  const sampleSchool: school = {
-    name: "ĐẠI HỌC CÔNG NGHỆ THÔNG TIN – ĐHQG TP. HỒ CHÍ MINH",
-    logoUrl: "/logo-UIT.svg",
-    address: "Viet Nam",
-    NFT: Array.from({ length: 8 }).map(() => sampleSkill),
-    participants: 5000,
-    description:
-      "UIT là một trong những trường top đầu về CNTT tại Việt Nam, hơn 10.000 chứng chỉ đã được phát hành và xác thực trên hệ thống",
-    skills: 101,
-    students: Array.from({ length: 10 }).map(() => sampleStudent),
-  };
-
   return (
     <div>
       <NavBar />

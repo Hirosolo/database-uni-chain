@@ -1,26 +1,18 @@
 "use client";
 import React from "react";
 import SkillCard from "./SkillCard";
+import data from "@/data/fetchedData.json";
+import { skill } from "../commonShare/allTypes";
 
-type skill = {
-  id: number;
-  name: string;
-  learners: number;
-  certificates: number;
-};
+const { certificates } = data;
 
-const skills: skill[] = [
-  {
-    id: 1,
-    name: "Blockchain Development",
-    learners: 10000,
-    certificates: 1000,
-  },
-  { id: 2, name: "Data Analysis", learners: 10000, certificates: 1000 },
-  { id: 3, name: "English", learners: 10000, certificates: 1000 },
-  { id: 4, name: "AI Fundamentals", learners: 10000, certificates: 1000 },
-  { id: 5, name: "System design", learners: 10000, certificates: 1000 },
-];
+const skills: skill[] = certificates.map((certificate, idx) => ({
+  rank: idx + 1,
+  name: certificate.metadata.skills ?? "Unknown Skill",
+  role: "Skill",
+  candidates: 1, // This would need to be calculated if we had candidate data
+  certificates: 1, // This is per certificate, so 1
+}));
 
 const TrendSkills = () => (
   <section className="bg-white p-6 pb-0 rounded shadow mt-6">
@@ -75,7 +67,7 @@ const TrendSkills = () => (
     </div>
     <div className="grid grid-cols-[repeat(5,minmax(150px,1fr))] gap-4 pb-4 overflow-x-hidden">
       {skills.map((c) => (
-        <SkillCard key={c.id} skill={c} />
+        <SkillCard key={c.rank} skill={c} />
       ))}
     </div>
   </section>

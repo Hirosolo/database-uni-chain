@@ -4,10 +4,13 @@ import NavBar from "../../../components/recuiter/commonShare/NavBar";
 import TopCandidates from "../../../components/recuiter/landingPage/TopCandidates";
 import TrendSkills from "../../../components/recuiter/landingPage/TrendSkills";
 import TopEducation from "@/components/recuiter/commonShare/TopEducation";
+import data from "@/data/fetchedData.json";
+
+const { certificates } = data;
 
 const sampleSchool = {
-  name: "University of Information Technology",
-  logoUrl: "/logo-UIT.svg"
+  name: certificates[0].issuer.name ?? "Unknown Issuer",
+  logoUrl: "/logo-UIT.svg" // You might want to add a logo URL to your data
 };
 
 const LandingPage = () => (

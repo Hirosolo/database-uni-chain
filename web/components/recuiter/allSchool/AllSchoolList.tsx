@@ -2,7 +2,7 @@ import React from "react";
 import SchoolCard from "./SchoolCard";
 import { school } from "../commonShare/allTypes";
 
-export default function AllSchoolList({school}: {school: school}) {
+export default function AllSchoolList({schools}: {schools: school[]}) {
   return (
     <div className="bg-white rounded-xl shadow p-6">
       <div className="grid grid-cols-1 gap-2">
@@ -11,7 +11,7 @@ export default function AllSchoolList({school}: {school: school}) {
           <span className="ml-145">Số lượng người học</span>
           <span className="ml-auto">Số lượng bằng cấp phát hành</span>
         </div>
-        {school.slice(0,school.length).map(c => (
+        {schools.map(c => (
           <SchoolCard key={c.rank} school={c} />
         ))}
       </div>

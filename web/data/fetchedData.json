@@ -1,0 +1,48 @@
+{
+  "scan": {
+    "timestamp": "2025-08-31T10:08:26.291Z",
+    "holder": "0x97BDEF86bC409CA4A65D361AC12B09F59C442178",
+    "hubContract": "0x4B581d01AFF9D688384F507208e56f70f71B1838",
+    "network": "Base Sepolia"
+  },
+  "summary": {
+    "totalCertificates": 1,
+    "activeCertificates": 1,
+    "expiredCertificates": 0,
+    "totalReputationPoints": 70,
+    "totalCertificatePoints": 70
+  },
+  "certificates": [
+    {
+      "basic": {
+        "contractAddress": "0x42681995ee04EA5045c6392B13ABcF10748E6376",
+        "tokenId": 3,
+        "name": "Blockchain Development",
+        "symbol": "CBD",
+        "holder": "0x97BDEF86bC409CA4A65D361AC12B09F59C442178"
+      },
+      "details": {
+        "level": 1,
+        "points": 70,
+        "issueDate": "2025-08-29T07:54:40.000Z",
+        "expireDate": "2026-08-30T04:35:12.000Z",
+        "mintDate": "2025-08-29T07:54:40.000Z",
+        "isExpired": false
+      },
+      "issuer": {
+        "address": "0x7EA634e331CF7b503df2e224f77a7C589462F1F2",
+        "name": "ĐẠI HỌC CÔNG NGHỆ THÔNG TIN – ĐHQG TP. HỒ CHÍ MINH",
+        "description": "UIT là một trong những trường top đầu về CNTT tại Việt Nam, hơn 10.000 chứng chỉ đã được phát hành và xác thực trên hệ thống",
+        "location": "TP. Hồ Chí Minh",
+        "website": "https://www.uit.edu.vn/"
+      },
+      "metadata": {
+        "tokenURI": ""
+      },
+      "blockchain": {
+        "hubAddress": "0x4B581d01AFF9D688384F507208e56f70f71B1838",
+        "studentReputation": 70
+      }
+    }
+  ]
+}

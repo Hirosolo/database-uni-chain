@@ -6,31 +6,33 @@ import NavBar from "@/components/recuiter/commonShare/NavBar";
 import Pagination from "@/components/recuiter/commonShare/Pagination";
 import React, { useState } from "react";
 import { skill, skillInfo, school } from "@/components/recuiter/skill/SkillType";
+import data from "@/data/fetchedData.json";
+
+const { certificates } = data;
 
 const sampleSkill: skill = {
-  name: "Blockchain Development",
-  type: "Bằng cấp",
-  level: "Dễ",
-  participants: 1000,
+  name: certificates[0].basic.name,
+  type: "Certificate",
+  level: certificates[0].details.level.toString(),
+  participants: certificates[0].blockchain.studentReputation,
 };
 
 const sampleSchool: school = {
-  name: "ĐẠI HỌC CÔNG NGHỆ THÔNG TIN – ĐHQG TP. HỒ CHÍ MINH",
+  name: certificates[0].issuer.name ?? "Unknown Issuer",
   logoUrl: "/logo-UIT.svg",
-  address: "Viet Nam",
+  address: certificates[0].issuer.location ?? "Unknown Location",
   NFT: Array.from({ length: 8 }).map(() => sampleSkill),
-  participants: 5000,
-  description:
-    "UIT là một trong những trường top đầu về CNTT tại Việt Nam, hơn 10.000 chứng chỉ đã được phát hành và xác thực trên hệ thống",
-  skills: 101,
+  participants: 5000, // This would need to be calculated
+  description: certificates[0].issuer.description ?? "No description",
+  skills: 101, // This would need to be calculated
 };
 
 const sampleSkillInfo: skillInfo = {
-  name: "Blockchain Development",
+  name: certificates[0].metadata.skills ?? "Unknown Skill",
   description:
     "Blockchain Development là kỹ năng xây dựng và triển khai các ứng dụng phi tập trung (Dapps), hợp đồng thông minh (smart contracts) và hệ thống blockchain. Người sở hữu kỹ năng này có khả năng hiểu rõ các nguyên lý hoạt động của blockchain, nắm vững ngôn ngữ lập trình như Solidity, Rust hoặc có thể áp dụng vào các lĩnh vực như DeFi, NFT, hay quản trị dữ liệu phi tập trung.",
   NFT: Array.from({ length: 8 }).map(() => sampleSkill),
-  participants: 5000,
+  participants: 5000, // This would need to be calculated
 };
 
 export default function SkillPage() {
