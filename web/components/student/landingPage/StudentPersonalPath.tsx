@@ -12,14 +12,14 @@ export default function StudentPersonalPath() {
           ))}
         </div>
         <div className="flex flex-col gap-2">
-          <button className="bg-blue-400 text-white rounded px-4 py-2 text-left">Chuẩn bị cho cơ hội việc làm mới</button>
-          <button className="bg-blue-400 text-white rounded px-4 py-2 text-left">Nâng cao kiến thức chuyên môn</button>
-          <button className="bg-blue-400 text-white rounded px-4 py-2 text-left">Tích lũy chứng chỉ để bổ sung CV</button>
-          <button className="bg-blue-400 text-white rounded px-4 py-2 text-left">Học vì đam mê, mở rộng hiểu biết</button>
+          <button className="bg-blue-400 text-white rounded px-4 py-3 text-left">Chuẩn bị cho cơ hội việc làm mới</button>
+          <button className="bg-blue-400 text-white rounded px-4 py-3 text-left">Nâng cao kiến thức chuyên môn</button>
+          <button className="bg-blue-400 text-white rounded px-4 py-3 text-left">Tích lũy chứng chỉ để bổ sung CV</button>
+          <button className="bg-blue-400 text-white rounded px-4 py-3 text-left">Học vì đam mê, mở rộng hiểu biết</button>
         </div>
       </div>
       <div className="flex-1 flex justify-center">
-        <img src="/student-path.svg" alt="Lộ trình học" className="h-48" />
+        <img src="/image-Path1.svg" alt="Lộ trình học" className="h-80" />
       </div>
     </section>
   );

@@ -32,9 +32,7 @@ const ProfileHeader = ({ candidate }: { candidate: candidate }) => (
           <h1 className="text-2xl font-bold mb-2">{candidate.name}</h1>
           <div className="text-gray-600 mb-1">{candidate.role}</div>
           <div className="text-sm text-gray-500 max-w-xl">
-            Bạn mê về blockchain và phát triển smart contract. Đã hoàn thành
-            nhiều chứng chỉ về Solidity, Web3 và DeFi. Đang tìm kiếm cơ hội để
-            áp dụng kỹ năng kỹ thuật vào các dự án thực tế.
+            {candidate.description}
           </div>
         </div>
       </div>

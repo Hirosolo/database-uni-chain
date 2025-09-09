@@ -8,30 +8,9 @@ import NavBar from "../../../components/recuiter/commonShare/NavBar";
 import CardToolbar from "@/components/recuiter/commonShare/CardToolbar";
 import ProfileInformation from "@/components/recuiter/profile/ProfileInformation";
 import { candidate, NFTDetail } from "@/components/recuiter/commonShare/allTypes";
-import data from "@/data/fetchedData.json";
+import { sampleCandidate, sampleNFT } from "@/components/recuiter/commonShare/data";
 
-const { certificates } = data;
 
-const sampleNFTDetail: NFTDetail = {
-  name: certificates[0].basic.name,
-  ownerAddress: "Nguyen Phat Tai",
-  type: "Certificate",
-  status: certificates[0].details.isExpired ? "Expired" : "Valid",
-  issuer: certificates[0].issuer.name ?? 'Unknown',
-  issueDate: new Date(certificates[0].details.issueDate).toLocaleDateString(),
-  expiredDate: new Date(certificates[0].details.expireDate).toLocaleDateString(),
-  contractAddress: certificates[0].basic.contractAddress,
-  description: 'No description',
-  skills: [],
-};
-
-const sampleCandidate: candidate = {
-  rank: 1,
-  name: "Nguyen Phat Tai",
-  role: "Student",
-  score: certificates[0].details.points,
-  NFT: Array.from({ length: 8 }).map((_, idx) => sampleNFTDetail),
-};
 
 export default function ProfilePage() {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -41,7 +20,7 @@ export default function ProfilePage() {
       <NavBar />
       <div className="bg-gray-50 min-h-screen">
         <ProfileHeader candidate={sampleCandidate}/>
-        <ProfileInformation />
+        <ProfileInformation candidate={sampleCandidate}/>
         <div className="flex gap-6 px-8 mt-6">
           {/* Sidebar toggle logic */}
           {showSidebar && <NFTFilterSidebar />}

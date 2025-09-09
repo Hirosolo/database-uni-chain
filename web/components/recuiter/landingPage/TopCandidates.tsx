@@ -2,36 +2,9 @@
 import React from "react";
 import { candidate } from "../commonShare/allTypes";
 import CandidateCard from "../landingPage/CandidateCard";
-import { NFTDetail } from "../commonShare/allTypes";
-import data from "@/data/fetchedData.json";
-
-const { certificates } = data;
-
-const candidates: candidate[] = certificates.map((certificate, idx) => ({
-  rank: idx + 1,
-  name: "Nguyen Phat Tai",
-  role: "Student", // This can be customized based on your data
-  score: certificate.details.points,
-  NFT: [
-    {
-      name: certificate.basic.name,
-      ownerAddress: "Nguyen Phat Tai",
-      type: "Certificate",
-      status: certificate.details.isExpired ? "Expired" : "Valid",
-      issuer: certificate.issuer.name ?? 'Unknown',
-      issueDate: new Date(certificate.details.issueDate).toLocaleDateString(),
-      expiredDate: new Date(certificate.details.expireDate).toLocaleDateString(),
-      contractAddress: certificate.basic.contractAddress,
-      description: 'No description',
-      skills: [],
-    },
-  ],
-}));
-
-type school = {
-  name: string;
-  logoUrl: string;
-};
+import { school } from "../commonShare/allTypes";
+import {sampleSchool, sampleCandidate}  from "@/components/recuiter/commonShare/data"
+import { array } from "zod";
 
 const TopCandidates = ({ school }: { school: school }) => (
   <section className="bg-white p-6 rounded shadow mt-6">
@@ -55,7 +28,7 @@ const TopCandidates = ({ school }: { school: school }) => (
               key={`logo-btn-${i}`}
               className="ml-2 py-1 rounded flex items-center justify-center"
             >
-              <img src={school.logoUrl} alt={school.name} className="h-5 w-6" />
+              <img src={school.logo} alt={school.name} className="h-5 w-6" />
             </button>
           ))}
         </div>
@@ -69,16 +42,15 @@ const TopCandidates = ({ school }: { school: school }) => (
       </nav>
     </div>
     <div className="grid grid-cols-2 gap-26">
-      {[0, 5].map((startIdx) => (
-        <div key={startIdx}>
-          {/* Header row for each column */}
+      {Array.from({length:1}).map((j)=>(
+        <div key={1}>
           <div className="flex items-center gap-4 mb-2 text-xs text-gray-600 font-semibold">
             <span className="">Ứng viên</span>
             <span className="ml-auto">Điểm danh tiếng</span>
           </div>
 
-          {candidates.slice(startIdx, startIdx + 5).map((c) => (
-            <CandidateCard key={c.rank} candidate={c} />
+          {Array.from({length:5}).map((_,i)=>(
+            <CandidateCard key={i} candidate={{...sampleCandidate, rank: i +1}}/>
           ))}
         </div>
       ))}

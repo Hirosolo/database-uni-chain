@@ -8,10 +8,12 @@ const { certificates } = data;
 
 const skills: skill[] = certificates.map((certificate, idx) => ({
   rank: idx + 1,
-  name: certificate.basic.name,
+  name: data.certificates[0].basic.name ?? "Unknown Skill",
   role: "Skill",
   candidates: 1, // This would need to be calculated if we had candidate data
   certificates: 1, // This is per certificate, so 1
+  learner: 1,
+  relatedCert: 1,
 }));
 
 const TrendSkills = () => (

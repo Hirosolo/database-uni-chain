@@ -1,10 +1,12 @@
-export default function ProfileInformation()
+import { candidate } from "../commonShare/allTypes";
+
+export default function ProfileInformation({ candidate }: { candidate: candidate })
 {
     return (
         <section className="flex items-center justify-between gap-6 px-8 mt-6">
             <div className="flex items-center text-sm text-gray-700 space-x-2">
             <span>
-                NFTs <span className="font-bold">99</span>
+                NFTs <span className="font-bold">{candidate.NFT.length}</span>
             </span>
             <span>·</span>
             <span>
@@ -12,7 +14,7 @@ export default function ProfileInformation()
             </span>
             <span>·</span>
             <span>
-                Điểm danh tiếng <span className="font-bold">5,079740</span>
+                Điểm danh tiếng <span className="font-bold">{candidate.repuPoints}</span>
             </span>
             <span>·</span>
             <span>

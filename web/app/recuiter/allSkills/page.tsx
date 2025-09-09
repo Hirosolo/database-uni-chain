@@ -4,13 +4,13 @@ import AllSkillHeader from "@/components/recuiter/allSkills/AllSkillHeader";
 import SkillToolbar from "@/components/recuiter/allSkills/SkillToolbar";
 import AllSkillList from "@/components/recuiter/allSkills/AllSkillList";
 import Pagination from "@/components/recuiter/commonShare/Pagination";
-import fetchedData from "@/data/fetchedData.json";
+import data from "@/data/fetchedData.json";
 import { skill } from "@/components/recuiter/commonShare/allTypes";
 
 const allSkills = () => {
-    const skills: skill[] = fetchedData.certificates.map((cert, index) => ({
+    const skills: skill[] = data.certificates.map((cert, index) => ({
         rank: index + 1,
-        name: cert.metadata.skills,
+        name: cert.basic.name,
         learner: cert.blockchain.studentReputation,
         relatedCert: 1
     }));

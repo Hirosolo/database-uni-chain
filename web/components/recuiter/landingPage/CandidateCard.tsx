@@ -18,7 +18,7 @@ const CandidateItem = ({ candidate }: { candidate: candidate }) => (
       </div>
     </div>
     <div className="ml-auto font-bold" style={{ color: "#04111D" }}>
-      {candidate.score.toLocaleString()}
+      {candidate.repuPoints.toLocaleString()}
     </div>
   </div>
 );
